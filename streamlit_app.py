@@ -45,8 +45,10 @@ st.markdown("""
 
 st.latex(r"g_{Na} = 400 \cdot m^3 h + g_i")
 
+st.title("Hodgkin-Huxley Model")
+
 image = Image.open("HHPhoto.jpg")
-st.image(image, caption="Hodgkin & Huxley", use_container_width=True)
+st.image(image, use_container_width=True)
 
 defaults = {
     "Cm": 12.0,
