@@ -13,6 +13,8 @@ Van = st.slider("Chloride Threshold (Van, mV)", -120.0, 0.0, -60.0)
 g_an = st.slider("Chloride Conductance (g_an, mS/cm²)", 0.0, 1.0, 0.0)
 gi = st.slider("Potassium Leak Conductance (g_i, mS/cm²)", 0.0, 1.0, 0.14)
 
+run_sim = st.button("Run Simulation")
+
 st.header("Deliver Square Wave Stimulation")
 pulse_amplitude = st.slider("Pulse Amplitude (µA/cm²)", 0.0, 50.0, 0.0)  # default = 0
 pulse_width = st.slider("Pulse Width (ms)", 0, 50, 20)
@@ -78,17 +80,20 @@ def system(t, y):
     )
     return [dV, dm, dh, dn]
 
-# --- Solve ---
-t_span = (0, 5000)
-t_eval = np.linspace(t_span[0], t_span[1], 2000)
-y0 = [-80, 0.01, 0.8, 0.0]
-sol = solve_ivp(system, t_span, y0, t_eval=t_eval, method='RK45')
+if run_sim:
+    # --- Solve ---
+    t_span = (0, 5000)
+    t_eval = np.linspace(t_span[0], t_span[1], 2000)
+    y0 = [-80, 0.01, 0.8, 0.0]
 
-# --- Plot ---
-fig, ax = plt.subplots()
-ax.plot(sol.t, sol.y[0])
-ax.set_xlabel("Time (ms)")
-ax.set_ylabel("Membrane Voltage (mV)")
-ax.set_title("Noble Model Membrane Potential")
-ax.grid(True)
-st.pyplot(fig)
+    sol = solve_ivp(system, t_span, y0, t_eval=t_eval, method='RK45')
+
+    # --- Plot ---
+    fig, ax = plt.subplots()
+    ax.plot(sol.t, sol.y[0])
+    ax.set_xlabel("Time (ms)")
+    ax.set_ylabel("Membrane Voltage (mV)")
+    ax.set_title("Noble Model Membrane Potential")
+    ax.grid(True)
+    st.pyplot(fig)
+
