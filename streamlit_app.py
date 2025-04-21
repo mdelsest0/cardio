@@ -5,25 +5,45 @@ from scipy.integrate import solve_ivp
 
 st.title("Noble Model Simulation")
 
-st.markdown(r"""
+# --- Model description and citation ---
+st.markdown("""
+This model is based on the **Hodgkin-Huxley framework**, extended by **Denis Noble (1962)** to describe cardiac electrical dynamics.
 
-This model is based on the **Hodgkin-Huxley equation** proposed by **Denis Noble (1962)**. It reformulates **Ohm’s Law** \( V = IR \) in terms of conductance \( R = \frac{1}{g} \), leading to current terms of the form:  
-\[
-I = g (V - V_{\text{eq}})
-\]
-where \( V_{\text{eq}} \) is the reversal (equilibrium) potential for the ion.
-
-\[
-C_m \frac{dV}{dt} + g_{Na}(V - V_{Na}) + (g_{K1} + g_{K2})(V - V_K) + g_{an}(V - V_{an}) = I_{\text{app}}
-\]
-
-- The membrane is modeled as a **capacitor** in parallel with **ion channels**, which behave like **resistors**.
-- An optional **current source** simulates external stimulation (set to 0 by default).
-- The **potassium channel K1** is voltage-dependent and instantaneous, based on exponential voltage gating.
-- The **K2 "delayed rectifier"** channel is time-dependent and proportional to \( n^4 \), where \( n \) is a voltage-gated variable.
-- The **sodium current** depends on a leak term and gating dynamics modeled by \( m^3 h \).
-
+It reformulates **Ohm’s Law** from:
 """)
+
+st.latex(r"V = IR")
+
+st.markdown("in terms of conductance:")
+
+st.latex(r"R = \frac{1}{g} \quad \Rightarrow \quad I = g(V - V_{\text{eq}})")
+
+st.markdown("where \( V_{\text{eq}} \) is the reversal potential for the ion.")
+
+st.markdown("The governing equation for membrane voltage is:")
+
+st.latex(r"""
+C_m \frac{dV}{dt} + g_{Na}(V - V_{Na}) + (g_{K1} + g_{K2})(V - V_K) + g_{an}(V - V_{an}) = I_{\text{app}}
+""")
+
+# --- Biophysical interpretation ---
+st.markdown("""
+### Biophysical Interpretation
+
+- The **membrane** is modeled as a **capacitor** in parallel with **ion channels**, represented as resistors.
+- A **current source** \( I_{\text{app}} \) models external stimulation (set to 0 by default).
+- The **potassium channel K1** is instantaneous and voltage-dependent, modeled by exponential functions.
+- The **K2 delayed rectifier channel** is time-dependent and proportional to a gating variable raised to the fourth power:
+""")
+
+st.latex(r"g_{K2} = \bar{g}_{K2} \cdot n^4")
+
+st.markdown("""
+- The **sodium current** includes both a leak term and gating dynamics:
+""")
+
+st.latex(r"g_{Na} = \bar{g}_{Na} \cdot m^3 h + g_i")
+
 
 
 defaults = {
