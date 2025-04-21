@@ -27,7 +27,6 @@ if st.button("Reset"):
     for key in defaults:
         if key in st.session_state:
             del st.session_state[key]
-    st.experimental_rerun()  # rerun to reset with default values
 
 st.header("Model Parameters")
 Cm = st.slider("Membrane Capacitance (Cm, µF/cm²)", 1.0, 100.0, value=st.session_state["Cm"], key="Cm")
