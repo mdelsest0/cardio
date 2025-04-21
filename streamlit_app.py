@@ -71,55 +71,55 @@ st.header("Model Parameters")
 # --- Sliders (using .get() for safe default fallback) ---
 Cm = st.slider(
     "Membrane Capacitance (Cm, µF/cm²)",
-    min_value=defaults["Cm"] - 1.5,
-    max_value=defaults["Cm"] + 1.5,
+    min_value=8.0,
+    max_value=20.0,
     value=st.session_state.get("Cm", defaults["Cm"]),
-    step=0.1,
+    step=0.5,
     key="Cm"
 )
 
 VNa = st.slider(
     "Sodium Threshold (VNa, mV)",
-    min_value=defaults["VNa"] - 1.5,
-    max_value=defaults["VNa"] + 1.5,
+    min_value=30.0,
+    max_value=60.0,
     value=st.session_state.get("VNa", defaults["VNa"]),
-    step=0.1,
+    step=0.5,
     key="VNa"
 )
 
 VK = st.slider(
     "Potassium Threshold (VK, mV)",
-    min_value=defaults["VK"] - 1.5,
-    max_value=defaults["VK"] + 1.5,
+    min_value=-120.0,
+    max_value=-60.0,
     value=st.session_state.get("VK", defaults["VK"]),
-    step=0.1,
+    step=0.5,
     key="VK"
 )
 
 Van = st.slider(
     "Chloride Threshold (Van, mV)",
-    min_value=defaults["Van"] - 1.5,
-    max_value=defaults["Van"] + 1.5,
+    min_value=-80.0,
+    max_value=-20.0,
     value=st.session_state.get("Van", defaults["Van"]),
-    step=0.1,
+    step=0.5,
     key="Van"
 )
 
 g_an = st.slider(
-    "Chloride Conductance (g_an)",
-    min_value=defaults["g_an"],
-    max_value=defaults["g_an"] + 1.5,
+    "Chloride Conductance (g_an, mS/cm²)",
+    min_value=0.0,
+    max_value=5.0,
     value=st.session_state.get("g_an", defaults["g_an"]),
-    step=0.1,
+    step=0.5,
     key="g_an"
 )
 
 gi = st.slider(
-    "Potassium Leak Conductance (gi)",
-    min_value=defaults["gi"] - 1.5,
-    max_value=defaults["gi"] + 1.5,
+    "Potassium Leak Conductance (g_i, mS/cm²)",
+    min_value=0.0,
+    max_value=0.5,
     value=st.session_state.get("gi", defaults["gi"]),
-    step=0.1,
+    step=0.01,
     key="gi"
 )
 
