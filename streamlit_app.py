@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+from PIL import Image
 from scipy.integrate import solve_ivp
 
 st.title("Noble Model Simulation")
@@ -44,7 +45,8 @@ st.markdown("""
 
 st.latex(r"g_{Na} = 400 \cdot m^3 h + g_i")
 
-
+image = Image.open("HHPhoto.jpg")
+st.image(image, caption="Hodgkin & Huxley Model", use_column_width=True)
 
 defaults = {
     "Cm": 12.0,
