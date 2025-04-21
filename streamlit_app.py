@@ -22,6 +22,13 @@ for key, value in defaults.items():
     if key not in st.session_state:
         st.session_state[key] = value
 
+# --- Reset button ---
+if st.button("Reset"):
+    for key in defaults:
+        if key in st.session_state:
+            del st.session_state[key]
+    st.experimental_rerun()  # rerun to reset with default values
+
 st.header("Model Parameters")
 Cm = st.slider("Membrane Capacitance (Cm, µF/cm²)", 1.0, 100.0, value=st.session_state["Cm"], key="Cm")
 VNa = st.slider("Sodium Threshold (VNa, mV)", 0.0, 100.0, value=st.session_state["VNa"], key="VNa")
@@ -31,13 +38,6 @@ g_an = st.slider("Chloride Conductance (g_an, mS/cm²)", 0.0, 1.0, value=st.sess
 gi = st.slider("Potassium Leak Conductance (g_i, mS/cm²)", 0.0, 1.0, value=st.session_state["gi"], key="gi")
 
 run_sim = st.button("Run Simulation")
-
-# Add Reset button to reset values
-if st.button("Reset"):
-    for key, value in defaults.items():
-        if key in st.session_state:
-            del st.session_state[key]  # force reset to default next rerun
-    st.experimental_rerun()
 
 st.header("Deliver Square Wave Stimulation")
 pulse_amplitude = st.slider("Pulse Amplitude (µA/cm²)", 0.0, 50.0, value=st.session_state["pulse_amplitude"], key="pulse_amplitude")
