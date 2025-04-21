@@ -17,6 +17,11 @@ defaults = {
     "pulse_frequency": 25.0
 }
 
+# Initialize state with defaults (only once per session)
+for key, value in defaults.items():
+    if key not in st.session_state:
+        st.session_state[key] = value
+
 st.header("Model Parameters")
 Cm = st.slider("Membrane Capacitance (Cm, µF/cm²)", 1.0, 100.0, value=st.session_state["Cm"], key="Cm")
 VNa = st.slider("Sodium Threshold (VNa, mV)", 0.0, 100.0, value=st.session_state["VNa"], key="VNa")
@@ -26,11 +31,6 @@ g_an = st.slider("Chloride Conductance (g_an, mS/cm²)", 0.0, 1.0, value=st.sess
 gi = st.slider("Potassium Leak Conductance (g_i, mS/cm²)", 0.0, 1.0, value=st.session_state["gi"], key="gi")
 
 run_sim = st.button("Run Simulation")
-
-# Initialize state with defaults (only once per session)
-for key, value in defaults.items():
-    if key not in st.session_state:
-        st.session_state[key] = value
 
 # Add Reset button to reset values
 if st.button("Reset"):
