@@ -43,14 +43,6 @@ for key, value in defaults.items():
     if key not in st.session_state:
         st.session_state[key] = value
 
-# --- Reset button ---
-if st.button("Reset"):
-    for key in defaults:
-        if key in st.session_state:
-            del st.session_state[key]
-            if "sim_result" in st.session_state:
-                del st.session_state["sim_result"]
-
 st.header("Model Parameters")
 # --- Sliders (using .get() for safe default fallback) ---
 Cm = st.slider("Membrane Capacitance (Cm, µF/cm²)", 1.0, 100.0, value=st.session_state.get("Cm", defaults["Cm"]), key="Cm")
@@ -66,6 +58,14 @@ pulse_width = st.slider("Pulse Width (ms)", 0, 50, value=st.session_state.get("p
 pulse_frequency = st.slider("Pulse Frequency (Hz)", 0.5, 100.0, value=st.session_state.get("pulse_frequency", defaults["pulse_frequency"]), key="pulse_frequency")
 
 run_sim = st.button("Run Simulation")
+
+# --- Reset button ---
+if st.button("Reset"):
+    for key in defaults:
+        if key in st.session_state:
+            del st.session_state[key]
+            if "sim_result" in st.session_state:
+                del st.session_state["sim_result"]
 
 gNa_max = 400
 pulse_period = 1000 / pulse_frequency
@@ -150,10 +150,10 @@ st.markdown(r"""
 **Citation:**  
 "Mathematical Physiology." *SpringerLink*, Springer New York, 2017. [https://doi.org/10.1007-978-0-387-75847-3](https://doi.org/10.1007-978-0-387-75847-3). Accessed 2 Nov. 2024.
 
-📂 **Code Repository:**  
+**Code Repository:**  
 [https://github.com/mdelsest0/cardio](https://github.com/mdelsest0/cardio)
 
-👤 **Created by:** Michael Del Sesto, 2025
+**Created by:** Michael Del Sesto, 2025
 """)
 
 
