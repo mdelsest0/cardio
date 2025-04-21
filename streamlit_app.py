@@ -45,7 +45,7 @@ st.markdown("""
 
 st.latex(r"g_{Na} = 400 \cdot m^3 h + g_i")
 
-st.title("Hodgkin-Huxley Model")
+st.header("Hodgkin-Huxley Model")
 
 image = Image.open("HHPhoto.jpg")
 st.image(image, use_container_width=True)
