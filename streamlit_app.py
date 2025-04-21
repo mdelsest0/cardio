@@ -5,6 +5,27 @@ from scipy.integrate import solve_ivp
 
 st.title("Noble Model Simulation")
 
+st.markdown(r"""
+
+This model is based on the **Hodgkin-Huxley equation** proposed by **Denis Noble (1962)**. It reformulates **Ohm’s Law** \( V = IR \) in terms of conductance \( R = \frac{1}{g} \), leading to current terms of the form:  
+\[
+I = g (V - V_{\text{eq}})
+\]
+where \( V_{\text{eq}} \) is the reversal (equilibrium) potential for the ion.
+
+\[
+C_m \frac{dV}{dt} + g_{Na}(V - V_{Na}) + (g_{K1} + g_{K2})(V - V_K) + g_{an}(V - V_{an}) = I_{\text{app}}
+\]
+
+- The membrane is modeled as a **capacitor** in parallel with **ion channels**, which behave like **resistors**.
+- An optional **current source** simulates external stimulation (set to 0 by default).
+- The **potassium channel K1** is voltage-dependent and instantaneous, based on exponential voltage gating.
+- The **K2 "delayed rectifier"** channel is time-dependent and proportional to \( n^4 \), where \( n \) is a voltage-gated variable.
+- The **sodium current** depends on a leak term and gating dynamics modeled by \( m^3 h \).
+
+""")
+
+
 defaults = {
     "Cm": 12.0,
     "VNa": 40.0,
@@ -124,4 +145,15 @@ if "sim_result" in st.session_state:
     ax.set_title("Noble Model Membrane Potential")
     ax.grid(True)
     st.pyplot(fig)
+
+st.markdown(r"""
+**Citation:**  
+"Mathematical Physiology." *SpringerLink*, Springer New York, 2017. [https://doi.org/10.1007-978-0-387-75847-3](https://doi.org/10.1007-978-0-387-75847-3). Accessed 2 Nov. 2024.
+
+📂 **Code Repository:**  
+[https://github.com/mdelsest0/cardio](https://github.com/mdelsest0/cardio)
+
+👤 **Created by:** Michael Del Sesto, 2025
+""")
+
 
