@@ -105,14 +105,16 @@ def system(t, y):
     return [dV, dm, dh, dn]
 
 if run_sim:
-    # --- Solve ---
     t_span = (0, 5000)
     t_eval = np.linspace(t_span[0], t_span[1], 2000)
     y0 = [-80, 0.01, 0.8, 0.0]
-
     sol = solve_ivp(system, t_span, y0, t_eval=t_eval, method='RK45')
+    
+    # Save result in session_state to persist it
+    st.session_state["sim_result"] = sol
 
-    # --- Plot ---
+if "sim_result" in st.session_state:
+    sol = st.session_state["sim_result"]
     fig, ax = plt.subplots()
     ax.plot(sol.t, sol.y[0])
     ax.set_xlabel("Time (ms)")
@@ -120,4 +122,7 @@ if run_sim:
     ax.set_title("Noble Model Membrane Potential")
     ax.grid(True)
     st.pyplot(fig)
+
+if "sim_result" in st.session_state:
+    del st.session_state["sim_result"]
 
