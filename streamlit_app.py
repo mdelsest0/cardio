@@ -69,12 +69,59 @@ for key, value in defaults.items():
 
 st.header("Model Parameters")
 # --- Sliders (using .get() for safe default fallback) ---
-Cm = st.slider("Membrane Capacitance (Cm, µF/cm²)", 1.0, 100.0, value=st.session_state.get("Cm", defaults["Cm"]), key="Cm")
-VNa = st.slider("Sodium Threshold (VNa, mV)", 0.0, 100.0, value=st.session_state.get("VNa", defaults["VNa"]), key="VNa")
-VK = st.slider("Potassium Threshold (VK, mV)", -120.0, 0.0, value=st.session_state.get("VK", defaults["VK"]), key="VK")
-Van = st.slider("Chloride Threshold (Van, mV)", -120.0, 0.0, value=st.session_state.get("Van", defaults["Van"]), key="Van")
-g_an = st.slider("Chloride Conductance (g_an)", 0.0, 1.0, value=st.session_state.get("g_an", defaults["g_an"]), key="g_an")
-gi = st.slider("Potassium Leak Conductance (gi)", 0.0, 1.0, value=st.session_state.get("gi", defaults["gi"]), key="gi")
+Cm = st.slider(
+    "Membrane Capacitance (Cm, µF/cm²)",
+    min_value=defaults["Cm"] - 1.5,
+    max_value=defaults["Cm"] + 1.5,
+    value=st.session_state.get("Cm", defaults["Cm"]),
+    step=0.1,
+    key="Cm"
+)
+
+VNa = st.slider(
+    "Sodium Threshold (VNa, mV)",
+    min_value=defaults["VNa"] - 1.5,
+    max_value=defaults["VNa"] + 1.5,
+    value=st.session_state.get("VNa", defaults["VNa"]),
+    step=0.1,
+    key="VNa"
+)
+
+VK = st.slider(
+    "Potassium Threshold (VK, mV)",
+    min_value=defaults["VK"] - 1.5,
+    max_value=defaults["VK"] + 1.5,
+    value=st.session_state.get("VK", defaults["VK"]),
+    step=0.1,
+    key="VK"
+)
+
+Van = st.slider(
+    "Chloride Threshold (Van, mV)",
+    min_value=defaults["Van"] - 1.5,
+    max_value=defaults["Van"] + 1.5,
+    value=st.session_state.get("Van", defaults["Van"]),
+    step=0.1,
+    key="Van"
+)
+
+g_an = st.slider(
+    "Chloride Conductance (g_an)",
+    min_value=defaults["g_an"],
+    max_value=defaults["g_an"] + 1.5,
+    value=st.session_state.get("g_an", defaults["g_an"]),
+    step=0.1,
+    key="g_an"
+)
+
+gi = st.slider(
+    "Potassium Leak Conductance (gi)",
+    min_value=defaults["gi"] - 1.5,
+    max_value=defaults["gi"] + 1.5,
+    value=st.session_state.get("gi", defaults["gi"]),
+    step=0.1,
+    key="gi"
+)
 
 st.header("Deliver Square Wave Stimulation")
 pulse_amplitude = st.slider("Pulse Amplitude (µA/cm²)", 0.0, 50.0, value=st.session_state.get("pulse_amplitude", defaults["pulse_amplitude"]), key="pulse_amplitude")
