@@ -31,7 +31,7 @@ st.markdown("""
 ### Biophysical Interpretation
 
 - The **membrane** is modeled as a **capacitor** in parallel with **ion channels**, represented as resistors.
-- A **current source** \( I_{\text{app}} \) models external stimulation (set to 0 by default).
+- A **current source** models external stimulation (set to 0 by default).
 - The **potassium channel K1** is instantaneous and voltage-dependent, modeled by exponential functions.
 - The **K2 delayed rectifier channel** is time-dependent and proportional to a gating variable raised to the fourth power:
 """)
