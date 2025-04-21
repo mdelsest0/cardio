@@ -18,7 +18,7 @@ st.markdown("in terms of conductance:")
 
 st.latex(r"R = \frac{1}{g} \quad \Rightarrow \quad I = g(V - V_{\text{eq}})")
 
-st.markdown("where \( V_{\text{eq}} \) is the reversal potential for the ion.")
+st.markdown("where Veq is the reversal potential for the ion.")
 
 st.markdown("The governing equation for membrane voltage is:")
 
