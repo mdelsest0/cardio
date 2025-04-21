@@ -35,8 +35,9 @@ run_sim = st.button("Run Simulation")
 # Add Reset button to reset values
 if st.button("Reset"):
     for key, value in defaults.items():
-        st.session_state[key] = value
-    st.experimental_rerun()  # Re-render with updated values
+        if key in st.session_state:
+            del st.session_state[key]  # force reset to default next rerun
+    st.experimental_rerun()
 
 st.header("Deliver Square Wave Stimulation")
 pulse_amplitude = st.slider("Pulse Amplitude (µA/cm²)", 0.0, 50.0, value=st.session_state["pulse_amplitude"], key="pulse_amplitude")
