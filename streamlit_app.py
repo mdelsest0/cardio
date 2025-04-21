@@ -36,13 +36,13 @@ st.markdown("""
 - The **K2 delayed rectifier channel** is time-dependent and proportional to a gating variable raised to the fourth power:
 """)
 
-st.latex(r"g_{K2} = \bar{g}_{K2} \cdot n^4")
+st.latex(r"g_{K2} = 1.2 \cdot n^4")
 
 st.markdown("""
 - The **sodium current** includes both a leak term and gating dynamics:
 """)
 
-st.latex(r"g_{Na} = \bar{g}_{Na} \cdot m^3 h + g_i")
+st.latex(r"g_{Na} = 400 \cdot m^3 h + g_i")
 
 
 
