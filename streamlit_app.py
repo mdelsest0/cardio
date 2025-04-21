@@ -152,7 +152,7 @@ def system(t, y):
     return [dV, dm, dh, dn]
 
 if run_sim:
-    t_span = (0, 5000)
+    t_span = (0, 2000)
     t_eval = np.linspace(t_span[0], t_span[1], 2000)
     y0 = [-80, 0.01, 0.8, 0.0]
     sol = solve_ivp(system, t_span, y0, t_eval=t_eval, method='RK45')
