@@ -173,6 +173,7 @@ if "sim_result" in st.session_state:
 st.markdown(r"""
 **Citation:**  
 [1] "Mathematical Physiology." *SpringerLink*, Springer New York, 2017. [https://doi.org/10.1007-978-0-387-75847-3](https://doi.org/10.1007-978-0-387-75847-3). Accessed 2 Nov. 2024.
+
 [2] Germano Resconi. “Boolean Models Guide Intentionally Continuous Information and Computation inside the Brain.” Oriental Journal of Computer Science and Technology, vol. 12, no. 3, Sept. 2019, pp. 90–98, www.computerscijournal.org/vol12no3/boolean-models-guide-intentionally-continuous-information-and-computation-inside-the-brain/. Accessed 21 Apr. 2025.
 
 **Code Repository:**  
