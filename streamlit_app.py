@@ -27,6 +27,8 @@ if st.button("Reset"):
     for key in defaults:
         if key in st.session_state:
             del st.session_state[key]
+            if "sim_result" in st.session_state:
+                del st.session_state["sim_result"]
 
 st.header("Model Parameters")
 # --- Sliders (using .get() for safe default fallback) ---
@@ -37,12 +39,12 @@ Van = st.slider("Chloride Threshold (Van, mV)", -120.0, 0.0, value=st.session_st
 g_an = st.slider("Chloride Conductance (g_an)", 0.0, 1.0, value=st.session_state.get("g_an", defaults["g_an"]), key="g_an")
 gi = st.slider("Potassium Leak Conductance (gi)", 0.0, 1.0, value=st.session_state.get("gi", defaults["gi"]), key="gi")
 
-run_sim = st.button("Run Simulation")
-
 st.header("Deliver Square Wave Stimulation")
 pulse_amplitude = st.slider("Pulse Amplitude (µA/cm²)", 0.0, 50.0, value=st.session_state.get("pulse_amplitude", defaults["pulse_amplitude"]), key="pulse_amplitude")
 pulse_width = st.slider("Pulse Width (ms)", 0, 50, value=st.session_state.get("pulse_width", defaults["pulse_width"]), key="pulse_width")
 pulse_frequency = st.slider("Pulse Frequency (Hz)", 0.5, 100.0, value=st.session_state.get("pulse_frequency", defaults["pulse_frequency"]), key="pulse_frequency")
+
+run_sim = st.button("Run Simulation")
 
 gNa_max = 400
 pulse_period = 1000 / pulse_frequency
@@ -122,7 +124,4 @@ if "sim_result" in st.session_state:
     ax.set_title("Noble Model Membrane Potential")
     ax.grid(True)
     st.pyplot(fig)
-
-if "sim_result" in st.session_state:
-    del st.session_state["sim_result"]
 
