@@ -5,20 +5,43 @@ from scipy.integrate import solve_ivp
 
 st.title("Noble Model Simulation")
 
+defaults = {
+    "Cm": 12.0,
+    "VNa": 40.0,
+    "VK": -100.0,
+    "Van": -60.0,
+    "g_an": 0.0,
+    "gi": 0.14,
+    "pulse_amplitude": 0.0,
+    "pulse_width": 20,
+    "pulse_frequency": 25.0
+}
+
 st.header("Model Parameters")
-Cm = st.slider("Membrane Capacitance (Cm, µF/cm²)", 1.0, 100.0, 12.0)
-VNa = st.slider("Sodium Threshold (VNa, mV)", 0.0, 100.0, 40.0)
-VK = st.slider("Potassium Threshold (VK, mV)", -120.0, 0.0, -100.0)
-Van = st.slider("Chloride Threshold (Van, mV)", -120.0, 0.0, -60.0)
-g_an = st.slider("Chloride Conductance (g_an, mS/cm²)", 0.0, 1.0, 0.0)
-gi = st.slider("Potassium Leak Conductance (g_i, mS/cm²)", 0.0, 1.0, 0.14)
+Cm = st.slider("Membrane Capacitance (Cm, µF/cm²)", 1.0, 100.0, value=st.session_state["Cm"], key="Cm")
+VNa = st.slider("Sodium Threshold (VNa, mV)", 0.0, 100.0, value=st.session_state["VNa"], key="VNa")
+VK = st.slider("Potassium Threshold (VK, mV)", -120.0, 0.0, value=st.session_state["VK"], key="VK")
+Van = st.slider("Chloride Threshold (Van, mV)", -120.0, 0.0, value=st.session_state["Van"], key="Van")
+g_an = st.slider("Chloride Conductance (g_an, mS/cm²)", 0.0, 1.0, value=st.session_state["g_an"], key="g_an")
+gi = st.slider("Potassium Leak Conductance (g_i, mS/cm²)", 0.0, 1.0, value=st.session_state["gi"], key="gi")
 
 run_sim = st.button("Run Simulation")
 
+# Initialize state with defaults (only once per session)
+for key, value in defaults.items():
+    if key not in st.session_state:
+        st.session_state[key] = value
+
+# Add Reset button to reset values
+if st.button("Reset"):
+    for key, value in defaults.items():
+        st.session_state[key] = value
+    st.experimental_rerun()  # Re-render with updated values
+
 st.header("Deliver Square Wave Stimulation")
-pulse_amplitude = st.slider("Pulse Amplitude (µA/cm²)", 0.0, 50.0, 0.0)  # default = 0
-pulse_width = st.slider("Pulse Width (ms)", 0, 50, 20)
-pulse_frequency = st.slider("Pulse Frequency (Hz)", 0.5, 100.0, 25.0)
+pulse_amplitude = st.slider("Pulse Amplitude (µA/cm²)", 0.0, 50.0, value=st.session_state["pulse_amplitude"], key="pulse_amplitude")
+pulse_width = st.slider("Pulse Width (ms)", 0, 50, value=st.session_state["pulse_width"], key="pulse_width")
+pulse_frequency = st.slider("Pulse Frequency (Hz)", 0.5, 100.0, value=st.session_state["pulse_frequency"], key="pulse_frequency")
 
 gNa_max = 400
 pulse_period = 1000 / pulse_frequency
