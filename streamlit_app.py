@@ -6,6 +6,16 @@ from scipy.integrate import solve_ivp
 
 st.title("Noble Model Simulation")
 
+st.markdown(
+    """
+    <a href="https://drive.google.com/file/d/1bFKTjZnl3qrLQLycNLZhW1LegjGYJ_ep/view?usp=sharing" target="_blank">
+        <button style='font-size:16px; padding:6px 12px;'>Read Noble 1961</button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # --- Model description and citation ---
 st.markdown("""
 This model is based on the **Hodgkin-Huxley framework**, extended by **Denis Noble (1962)** to describe cardiac electrical dynamics.
@@ -49,16 +59,6 @@ st.subheader("Hodgkin-Huxley Model")
 
 image = Image.open("HHPhoto.jpg")
 st.image(image, use_container_width=True)
-
-st.markdown(
-    """
-    <a href="https://drive.google.com/file/d/1bFKTjZnl3qrLQLycNLZhW1LegjGYJ_ep/view?usp=sharing" target="_blank">
-        <button style='font-size:16px; padding:6px 12px;'>Read Noble 1961</button>
-    </a>
-    """,
-    unsafe_allow_html=True
-)
-
 
 defaults = {
     "Cm": 12.0,
