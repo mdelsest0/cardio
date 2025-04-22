@@ -50,6 +50,13 @@ st.markdown("""
 - The **membrane** is modeled as a **capacitor** in parallel with **ion channels**, represented as resistors.
 - A **current source** models external stimulation (set to 0 by default).
 - The **potassium channel K1** is instantaneous and voltage-dependent, modeled by exponential functions.
+""")
+
+st.latex(r"""
+g_{K_1} = 1.2 \cdot \exp\left(\frac{ -E_m - 90 }{50}\right) + 0.015 \cdot \exp\left(\frac{ E_m + 90 }{60}\right)
+""")
+
+st.markdown("""
 - The **K2 delayed rectifier channel** is time-dependent and proportional to a gating variable raised to the fourth power:
 """)
 
@@ -230,9 +237,9 @@ if "sim_result" in st.session_state:
 
 st.markdown(r"""
 **Citation:**  
-[1] "Mathematical Physiology." *SpringerLink*, Springer New York, 2017. [https://doi.org/10.1007-978-0-387-75847-3](https://doi.org/10.1007-978-0-387-75847-3). Accessed 2 Nov. 2024.
+[1] Noble, D. "A Modification of the Hodgkin–Huxley Equations Applicable to Purkinje Fibre Action and Pace-Maker Potentials." The Journal of Physiology, vol. 160, 1962, pp. 317–352.
 
-[2] Germano Resconi. “Boolean Models Guide Intentionally Continuous Information and Computation inside the Brain.” Oriental Journal of Computer Science and Technology, vol. 12, no. 3, Sept. 2019, pp. 90–98, www.computerscijournal.org/vol12no3/boolean-models-guide-intentionally-continuous-information-and-computation-inside-the-brain/. Accessed 21 Apr. 2025.
+[2] "Mathematical Physiology." *SpringerLink*, Springer New York, 2017. [https://doi.org/10.1007-978-0-387-75847-3](https://doi.org/10.1007-978-0-387-75847-3). Accessed 2 Nov. 2024.
 
 **Code Repository:**  
 [https://github.com/mdelsest0/cardio](https://github.com/mdelsest0/cardio)
