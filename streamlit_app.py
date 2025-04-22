@@ -9,7 +9,7 @@ st.title("Noble Model Simulation")
 # --- Model description and citation ---
 st.markdown("""
 
-This model is based on the **Hodgkin-Huxley framework**, extended by **Denis Noble (1962)** to describe cardiac electrical dynamics.
+This model is based on the **Hodgkin-Huxley framework**, extended by **Denis Noble (1961)** to describe cardiac electrical dynamics.
 """)
 
 st.markdown(
