@@ -40,6 +40,9 @@ st.latex(r"""
 C_m \frac{dV}{dt} + g_{Na}(V - V_{Na}) + (g_{K1} + g_{K2})(V - V_K) + g_{an}(V - V_{an}) = I_{\text{app}}
 """)
 
+image = Image.open("HHPhoto.jpg")
+st.image(image, use_container_width=True)
+
 # --- Biophysical interpretation ---
 st.markdown("""
 ### Biophysical Interpretation
@@ -57,11 +60,6 @@ st.markdown("""
 """)
 
 st.latex(r"g_{Na} = 400 \cdot m^3 h + g_i")
-
-st.subheader("Hodgkin-Huxley Model")
-
-image = Image.open("HHPhoto.jpg")
-st.image(image, use_container_width=True)
 
 defaults = {
     "Cm": 12.0,
