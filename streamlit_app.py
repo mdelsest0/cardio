@@ -235,6 +235,26 @@ if "sim_result" in st.session_state:
     ax.grid(True)
     st.pyplot(fig)
 
+st.markdown("""
+### Challenge Problem
+
+**Model the effects of the following drugs:**
+
+- Amiodarone  
+- Disopyramide  
+- Dofetilide  
+- Dronedarone  
+- Flecainide  
+- Ibutilide  
+- Lidocaine  
+- Mexiletine  
+- Procainamide  
+- Propafenone  
+- Quinidine  
+- Sotalol
+""")
+
+
 st.markdown(r"""
 **Citation:**  
 [1] Noble, D. "A Modification of the Hodgkin–Huxley Equations Applicable to Purkinje Fibre Action and Pace-Maker Potentials." The Journal of Physiology, vol. 160, 1962, pp. 317–352.
