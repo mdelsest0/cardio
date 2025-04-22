@@ -234,10 +234,10 @@ if run_sim:
 
 if "sim_result" in st.session_state:
     sol = st.session_state["sim_result"]
-    # fig, ax = plt.subplots()
+    fig, ax = plt.subplots()
     for i, sol in enumerate(st.session_state.simulation_history):
         ax.plot(sol.t, sol.y[0], label=f"Run {i+1}")
-    ax.plot(sol.t, sol.y[0])
+    # ax.plot(sol.t, sol.y[0])
     ax.set_xlabel("Time (ms)")
     ax.set_ylabel("Membrane Voltage (mV)")
     ax.set_title("Noble Model Membrane Potential")
