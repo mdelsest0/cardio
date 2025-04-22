@@ -156,8 +156,6 @@ if st.button("Reset"):
     for key in defaults:
         if key in st.session_state:
             del st.session_state[key]
-            if "sim_result" in st.session_state:
-                del st.session_state["sim_result"]
     st.session_state.simulation_history = []
 
 gNa_max = 400
