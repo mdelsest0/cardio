@@ -232,7 +232,7 @@ if run_sim:
     # Save this simulation to history
     st.session_state.simulation_history.append(sol)
 
-if "sim_result" in st.session_state:
+if st.session_state.simulation_history:
     sol = st.session_state["sim_result"]
     fig, ax = plt.subplots()
     for i, sol in enumerate(st.session_state.simulation_history):
