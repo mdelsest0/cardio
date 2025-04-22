@@ -85,6 +85,9 @@ for key, value in defaults.items():
     if key not in st.session_state:
         st.session_state[key] = value
 
+if "simulation_history" not in st.session_state:
+    st.session_state.simulation_history = []
+
 st.header("Model Parameters")
 # --- Sliders (using .get() for safe default fallback) ---
 Cm = st.slider(
@@ -155,6 +158,7 @@ if st.button("Reset"):
             del st.session_state[key]
             if "sim_result" in st.session_state:
                 del st.session_state["sim_result"]
+    st.session_state.simulation_history = []
 
 gNa_max = 400
 pulse_period = 1000 / pulse_frequency
@@ -223,11 +227,16 @@ if run_sim:
     sol = solve_ivp(system, t_span, y0, t_eval=t_eval, method='RK45')
     
     # Save result in session_state to persist it
-    st.session_state["sim_result"] = sol
+    # st.session_state["sim_result"] = sol
+
+    # Save this simulation to history
+    st.session_state.simulation_history.append(sol)
 
 if "sim_result" in st.session_state:
     sol = st.session_state["sim_result"]
-    fig, ax = plt.subplots()
+    # fig, ax = plt.subplots()
+    for i, sol in enumerate(st.session_state.simulation_history):
+        ax.plot(sol.t, sol.y[0], label=f"Run {i+1}")
     ax.plot(sol.t, sol.y[0])
     ax.set_xlabel("Time (ms)")
     ax.set_ylabel("Membrane Voltage (mV)")
