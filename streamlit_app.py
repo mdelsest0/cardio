@@ -231,7 +231,6 @@ if run_sim:
     st.session_state.simulation_history.append(sol)
 
 if st.session_state.simulation_history:
-    sol = st.session_state["sim_result"]
     fig, ax = plt.subplots()
     for i, sol in enumerate(st.session_state.simulation_history):
         ax.plot(sol.t, sol.y[0], label=f"Run {i+1}")
