@@ -6,6 +6,12 @@ from scipy.integrate import solve_ivp
 
 st.title("Noble Model Simulation")
 
+# --- Model description and citation ---
+st.markdown("""
+
+This model is based on the **Hodgkin-Huxley framework**, extended by **Denis Noble (1962)** to describe cardiac electrical dynamics.
+""")
+
 st.markdown(
     """
     <a href="https://drive.google.com/file/d/1bFKTjZnl3qrLQLycNLZhW1LegjGYJ_ep/view?usp=sharing" target="_blank">
@@ -15,13 +21,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-# --- Model description and citation ---
-st.markdown("""
-
-This model is based on the **Hodgkin-Huxley framework**, extended by **Denis Noble (1962)** to describe cardiac electrical dynamics.
-
-It reformulates **Ohm’s Law** from:
+st.markdown("""It reformulates **Ohm’s Law** from:
 """)
 
 st.latex(r"V = IR")
